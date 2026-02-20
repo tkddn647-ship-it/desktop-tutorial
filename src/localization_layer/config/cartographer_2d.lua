@@ -5,11 +5,12 @@ options = {
   map_builder = MAP_BUILDER,
   trajectory_builder = TRAJECTORY_BUILDER,
   map_frame = "map",
-  tracking_frame = "base_link",
+  tracking_frame = "imu_link",
   published_frame = "base_link",
   odom_frame = "odom",
   provide_odom_frame = false,
   publish_frame_projected_to_2d = true,
+  use_pose_extrapolator = true,
   use_odometry = true,
   use_nav_sat = false,
   use_landmarks = false,
@@ -24,6 +25,8 @@ options = {
   rangefinder_sampling_ratio = 1.0,
   odometry_sampling_ratio = 1.0,
   fixed_frame_pose_sampling_ratio = 1.0,
+  imu_sampling_ratio = 1.0,
+  landmarks_sampling_ratio = 1.0,
 }
 
 MAP_BUILDER.use_trajectory_builder_2d = true

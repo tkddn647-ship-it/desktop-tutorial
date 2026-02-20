@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>tf_manager_cpp</name>
+  <version>0.0.1</version>
+  <description>Hierarchical TF Manager</description>
+
+  <maintainer email="user@email.com">user</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>tf2_ros</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+
+</package>

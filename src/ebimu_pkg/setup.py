@@ -13,7 +13,7 @@ setup(
         # launch 파일 설치 (ros2 launch ebimu_pkg ebimu.launch.py 사용 가능)
         ('share/' + package_name + '/launch', ['launch/ebimu.launch.py']),
     ],
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'pyserial'],
     zip_safe=True,
     maintainer='e2box',
     maintainer_email='e2b@e2box.co.kr',

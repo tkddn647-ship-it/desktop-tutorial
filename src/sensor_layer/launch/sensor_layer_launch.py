@@ -23,38 +23,34 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, LogInfo, IncludeLaunchDescription
 from launch.substitutions import LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node
-from launch_ros.parameter_descriptions import ParameterValue
-
-
 def generate_launch_description():
 
     # ── LiDAR T1(UDP) 파라미터 (sllidar_t1_launch.py로 전달) ───────────
-    channel_type = LaunchConfiguration("channel_type", default="udp")
-    udp_ip = LaunchConfiguration("udp_ip", default="192.168.11.2")
-    udp_port = LaunchConfiguration("udp_port", default="8089")
-    frame_id = LaunchConfiguration("frame_id", default="laser")
-    inverted = LaunchConfiguration("inverted", default="false")
-    angle_compensate = LaunchConfiguration("angle_compensate", default="true")
-    scan_mode = LaunchConfiguration("scan_mode", default="Sensitivity")
+    channel_type = LaunchConfiguration("channel_type")
+    udp_ip = LaunchConfiguration("udp_ip")
+    udp_port = LaunchConfiguration("udp_port")
+    frame_id = LaunchConfiguration("frame_id")
+    inverted = LaunchConfiguration("inverted")
+    angle_compensate = LaunchConfiguration("angle_compensate")
+    scan_mode = LaunchConfiguration("scan_mode")
 
     # ── EBIMU 파라미터 ───────────────────────────────────────────────
-    ebimu_port = LaunchConfiguration('ebimu_port', default='/dev/ttyUSB0')
-    ebimu_baud = LaunchConfiguration('ebimu_baud', default='115200')
+    ebimu_port = LaunchConfiguration('ebimu_port')
+    ebimu_baud = LaunchConfiguration('ebimu_baud')
 
     return LaunchDescription([
 
         # ── Declare Arguments ────────────────────────────────────────
-        DeclareLaunchArgument("channel_type", default_value=channel_type, description="LiDAR 채널 타입 (T1은 udp)"),
-        DeclareLaunchArgument("udp_ip", default_value=udp_ip, description="SLLIDAR T1 UDP IP"),
-        DeclareLaunchArgument("udp_port", default_value=udp_port, description="SLLIDAR T1 UDP Port"),
-        DeclareLaunchArgument("frame_id", default_value=frame_id, description="LiDAR frame_id"),
-        DeclareLaunchArgument("inverted", default_value=inverted, description="스캔 데이터 반전 여부"),
-        DeclareLaunchArgument("angle_compensate", default_value=angle_compensate, description="각도 보정 여부"),
-        DeclareLaunchArgument("scan_mode", default_value=scan_mode, description="스캔 모드"),
+        DeclareLaunchArgument("channel_type", default_value="udp", description="LiDAR 채널 타입 (T1은 udp)"),
+        DeclareLaunchArgument("udp_ip", default_value="192.168.11.2", description="SLLIDAR T1 UDP IP"),
+        DeclareLaunchArgument("udp_port", default_value="8089", description="SLLIDAR T1 UDP Port"),
+        DeclareLaunchArgument("frame_id", default_value="laser", description="LiDAR frame_id"),
+        DeclareLaunchArgument("inverted", default_value="false", description="스캔 데이터 반전 여부"),
+        DeclareLaunchArgument("angle_compensate", default_value="true", description="각도 보정 여부"),
+        DeclareLaunchArgument("scan_mode", default_value="Sensitivity", description="스캔 모드"),
 
-        DeclareLaunchArgument('ebimu_port',       default_value=ebimu_port,       description='EBIMU 시리얼 포트'),
-        DeclareLaunchArgument('ebimu_baud',       default_value=ebimu_baud,       description='EBIMU 통신 속도'),
+        DeclareLaunchArgument('ebimu_port', default_value='/dev/ttyUSB0', description='EBIMU 시리얼 포트'),
+        DeclareLaunchArgument('ebimu_baud', default_value='115200', description='EBIMU 통신 속도'),
 
         LogInfo(msg='=== sensor_layer 시작: EBIMU IMU + SLLIDAR T1 + TF ==='),
 

@@ -24,15 +24,21 @@ options = {
   rangefinder_sampling_ratio = 1.0,
   odometry_sampling_ratio = 1.0,
   fixed_frame_pose_sampling_ratio = 1.0,
-  imu_sampling_ratio = 1.0,
-  landmarks_sampling_ratio = 1.0,
 }
 
 MAP_BUILDER.use_trajectory_builder_2d = true
-TRAJECTORY_BUILDER_2D.use_imu_data = true
 
--- Keep wheel odometry for local tracking, but remove it from global pose graph.
-POSE_GRAPH.optimization_problem.odometry_translation_weight = 0.
-POSE_GRAPH.optimization_problem.odometry_rotation_weight = 0.
+TRAJECTORY_BUILDER_2D.use_imu_data = true
+TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
+
+if not POSE_GRAPH then
+  POSE_GRAPH = {}
+end
+if not POSE_GRAPH.optimization_problem then
+  POSE_GRAPH.optimization_problem = {}
+end
+
+POSE_GRAPH.optimization_problem.odometry_translation_weight = 0.1
+POSE_GRAPH.optimization_problem.odometry_rotation_weight = 0.1
 
 return options
